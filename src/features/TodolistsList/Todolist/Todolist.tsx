@@ -1,13 +1,17 @@
 import React, { useCallback, useEffect } from "react";
-import { AddItemForm } from "../../../components/AddItemForm/AddItemForm";
-import { EditableSpan } from "../../../components/EditableSpan/EditableSpan";
+// import { AddItemForm } from "../../../components/AddItemForm/AddItemForm";
+// import { EditableSpan } from "../../../components/EditableSpan/EditableSpan";  // при помощи фаила index.ts ьщжно делать импорт как в 11 строке.
 import { Task } from "./Task/Task";
-import { TaskStatuses, TaskType } from "../../../api/todolists-api";
+// import { TaskStatuses, TaskType } from "../../../common/api/instance";
 import { FilterValuesType, TodolistDomainType } from "features/TodolistsList/todolists.reducer";
 import { fetchTasks } from "features/TodolistsList/tasks.reducer";
-import { useAppDispatch } from "../../../hooks/useAppDispatch";
+// import { useAppDispatch } from "../../../hooks/useAppDispatch";
 import { Button, IconButton } from "@mui/material";
 import { Delete } from "@mui/icons-material";
+import { AddItemForm, EditableSpan } from "components";
+import { useAppDispatch } from "common/hooks/useAppDispatch";
+import { TaskType } from "features/TodolistsList/todolistsApi";
+import { TaskStatuses } from "common/enum/enums";
 
 type PropsType = {
   todolist: TodolistDomainType;

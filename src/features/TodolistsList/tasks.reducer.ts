@@ -1,20 +1,25 @@
-import {
-  CreatTask,
-  TaskPriorities,
-  TaskStatuses,
-  TaskType,
-  todolistsAPI,
-  UpdateTaskAgr,
-  UpdateTaskModelType,
-} from "api/todolists-api";
+// import {
+//   CreatTask,
+//   TaskPriorities,
+//   TaskStatuses,
+//   TaskType,
+//   todolistsAPI,
+//   UpdateTaskAgr,
+//   UpdateTaskModelType,
+// } from "common/api/instance";
 import { AppThunk } from "app/store";
-import { handleServerAppError, handleServerNetworkError } from "utils/error-utils";
+// import { handleServerNetworkError } from "utils/handleServerNetvorkError";
 import { appActions } from "app/app.reducer";
 import { todolistsActions } from "features/TodolistsList/todolists.reducer";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { clearTasksAndTodolists } from "common/actions/common.actions";
 import { Action } from "@remix-run/router";
-import { createAppAsyncThunk } from "utils/create-app-async-thunk";
+import { createAppAsyncThunk } from "common/utils/create-app-async-thunk";
+import { handleServerAppError, handleServerNetworkError } from "common/utils";
+import { CreatTask, TaskType, todolistsAPI, UpdateTaskAgr, UpdateTaskModelType } from "features/TodolistsList/todolistsApi";
+import { TaskPriorities, TaskStatuses } from "common/enum/enums";
+// import { createAppAsyncThunk } from "utils/create-app-async-thunk";
+// import { handleServerAppError } from "utils/handlServererror";
 
 const initialState: TasksStateType = {};
 
@@ -117,7 +122,7 @@ export const removeTaskTC =
     });
   };
 
-const addTask = createAppAsyncThunk<{ task: TaskType }, CreatTask>(`${slice.name}/addTask`, async (arg, thunkAPI) => {
+ export const addTask = createAppAsyncThunk<{ task: TaskType }, CreatTask>(`${slice.name}/addTask`, async (arg, thunkAPI) => {
   const { dispatch, rejectWithValue } = thunkAPI;
   try {
     dispatch(appActions.setAppStatus({ status: "loading" }));
